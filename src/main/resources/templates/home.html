@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+  </head>
+
+  <body>
+    <p>Expense list</p>
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr th:each="str : ${strings}">
+          <td>str</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
