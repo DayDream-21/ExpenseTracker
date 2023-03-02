@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+    <h1>Add Expense</h1>
+
+    <form action="#" th:action="@{/expense}" th:object="${expense}" th:method="post">
+      <p><input type="text" th:field="${expense.expenseName}" placeholder="Enter expense name"></p>
+      <p><input type="text" th:field="${expense.amount}" placeholder="Enter expense amount"></p>
+      <p><input type="text" th:field="${expense.note}" placeholder="Enter note (optional)"></p>
+
+      <button type="submit">Add Expense</button>
+    </form>
+
+  </body>
+</html>

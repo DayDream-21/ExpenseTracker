@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
     <title>Home</title>
   </head>
 
   <body>
-    <p>Expense list</p>
-    <table>
-      <thead></thead>
-      <tbody>
-        <tr th:each="str : ${strings}">
-          <td>str</td>
-        </tr>
-      </tbody>
-    </table>
+    <h1>Expanse Tracker</h1>
+
+    <div th:each="expense : ${expenses}">
+      <h3 th:text="${expense.expenseName}"></h3>
+      <p th:text="${expense.amount + ' $'}"></p>
+    </div>
+
+  <a href="/expense">Add Expense</a>
+
   </body>
 </html>
