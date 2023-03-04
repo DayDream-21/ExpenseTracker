@@ -5,10 +5,7 @@ import com.slavamashkov.expensetracker.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class MainController {
     }
 
     @GetMapping("/expense")
-    public String addExpense(Model model) {
+    public String openAddExpensePage(Model model) {
         model.addAttribute("expense", new Expense());
 
         return "expense";
@@ -37,6 +34,25 @@ public class MainController {
     @PostMapping(value = "/expense")
     public String save(@ModelAttribute("expense") Expense expense) {
         expenseService.save(expense);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/expense/{id}")
+    public String openEditExpensePage(@PathVariable String id, Model model) {
+        Expense expense = expenseService.findById(Long.valueOf(id));
+
+        model.addAttribute("expense", expense);
+
+        return "expense";
+    }
+
+    @GetMapping("/expense/{id}/delete")
+    public String deleteExpense(@PathVariable String id, Model model) {
+        Expense expense = expenseService.findById(Long.valueOf(id));
+
+        expenseService.delete(expense);
+
         return "redirect:/";
     }
 }

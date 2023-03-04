@@ -6,11 +6,13 @@
   </head>
 
   <body>
-    <h1>Expanse Tracker</h1>
+    <h1>Expense Tracker</h1>
 
     <div th:each="expense : ${expenses}">
       <h3 th:text="${expense.expenseName}"></h3>
       <p th:text="${expense.amount + ' $'}"></p>
+      <a th:href="@{/expense/{id} (id = ${expense.getId()})}">Edit</a>
+      <a th:href="@{/expense/{id}/delete (id = ${expense.getId()})}">Delete</a>
     </div>
 
   <a href="/expense">Add Expense</a>

@@ -19,7 +19,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public void save(Expense expense) {
-        expense.setCreatedAt(System.currentTimeMillis());
+        if (expense.getId() == null) {
+            expense.setCreatedAt(System.currentTimeMillis());
+        } else {
+            expense.setCreatedAt(expenseRepository.findById(expense.getId()).get().getCreatedAt());
+        }
+
         expenseRepository.save(expense);
+    }
+
+    @Override
+    public void delete(Expense expense) {
+        expenseRepository.delete(expense);
+    }
+
+    @Override
+    public Expense findById(Long id) {
+        return expenseRepository.findById(id).orElse(null);
     }
 }
